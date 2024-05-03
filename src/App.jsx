@@ -8,6 +8,7 @@ import TabArticulos from './components/tabArticulos';
 import TabCateg from './components/tabCategorias';
 import TabEspacios from './components/tabEspacios';
 import TabEdificios from './components/tabEdificios';
+import TabUsuarios from './components/tabUsuarios';
 const App = () => {
   return (
     <Layout
@@ -32,7 +33,7 @@ const App = () => {
             minHeight: 280,
           }}
         >
-          <TabEdificios/>
+          <TabUsuarios/>
         </Content>
       </Layout>
     </Layout>

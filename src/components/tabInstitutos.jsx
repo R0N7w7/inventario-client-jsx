@@ -5,9 +5,8 @@ const dataSource = [
   {
     key: '1',
     id: 1,
-    nombre: 'Ciencias cum',
-    numero_pisos: 2,
-    area_academica_id: 1234,
+    nombre: 'icbi',
+    codigo: 2,
   },
   // Add more data items as needed
 ];
@@ -24,17 +23,12 @@ const columns = [
     key: 'nombre',
   },
   {
-    title: '#Pisos',
-    dataIndex: 'numero_pisos',
-    key: 'numero_pisos',
+    title: 'Código',
+    dataIndex: 'codigo',
+    key: 'codigo',
   },
   {
-    title: 'Área Académica',
-    dataIndex: 'area_academica_id',
-    key: 'area_academica_id',
-  },
-  {
-    title: 'Actions',
+    title: 'Acciones',
     key: 'actions',
     render: (text, record) => (
       <>

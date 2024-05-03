@@ -5,8 +5,11 @@ const dataSource = [
   {
     key: '1',
     id: 1,
-    nombre: 'John Doe',
-    descripcion: '123'
+    nombre: 'icbi',
+    apellido_paterno: 'garza',
+    apellido_materno: 'garza2',
+    email:'garza@gmail.cum',
+    password:'1234'
   },
   // Add more data items as needed
 ];
@@ -23,9 +26,24 @@ const columns = [
     key: 'nombre',
   },
   {
-    title: 'Descripción',
-    dataIndex: 'descripcion',
-    key: 'descripcion',
+    title: 'Ap. Paterno',
+    dataIndex: 'apellido_paterno',
+    key: 'apellido_paterno',
+  },
+  {
+    title: 'Ap. Materno',
+    dataIndex: 'apellido_materno',
+    key: 'apellido_materno',
+  },
+  {
+    title: 'e-mail',
+    dataIndex: 'email',
+    key: 'email',
+  },
+  {
+    title: 'Contraseña',
+    dataIndex: 'password',
+    key: 'password'
   },
   {
     title: 'Acciones',
@@ -53,8 +71,8 @@ const deleteRow = (key) => {
   console.log('Delete row with key:', key);
 };
 
-const TabCateg = () => {
+const TabUsuarios = () => {
   return <Table dataSource={dataSource} columns={columns} />;
 };
 
-export default TabCateg;
+export default TabUsuarios;

@@ -71,7 +71,7 @@ const columns = [
     key: 'caracteristicas',
   },
   {
-    title: 'Actions',
+    title: 'Acciones',
     key: 'actions',
     render: (text, record) => (
       <>

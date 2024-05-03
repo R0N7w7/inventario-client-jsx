@@ -34,7 +34,7 @@ const columns = [
     key: 'institutoId',
   },
   {
-    title: 'Actions',
+    title: 'Acciones',
     key: 'actions',
     render: (text, record) => (
       <>

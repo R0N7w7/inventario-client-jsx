@@ -34,7 +34,7 @@ const columns = [
     key: 'area_academica_id',
   },
   {
-    title: 'Actions',
+    title: 'Acciones',
     key: 'actions',
     render: (text, record) => (
       <>
