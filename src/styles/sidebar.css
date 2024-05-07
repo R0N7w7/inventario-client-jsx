@@ -17,5 +17,7 @@
     justify-items: center;
 }
 .logo img {
-    width: 140px;
+    width: 100%;
+    max-width: 150px;
+    padding: 8px;
 }
