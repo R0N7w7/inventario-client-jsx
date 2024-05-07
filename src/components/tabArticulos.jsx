@@ -1,4 +1,4 @@
-import { Table, Button } from 'antd';
+import { Button, Table } from 'antd';
 const columns = [
   {
     title: 'ID',
@@ -97,7 +97,7 @@ const deleteRow = (id) => {
 };
 
 const TabArticulos = () => {
-  return <Table dataSource={columns} columns={columns} />;
+  return <Table columns={columns} scroll={{ x: true }} />;
 };
 
 export default TabArticulos;
