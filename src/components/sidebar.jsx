@@ -3,6 +3,9 @@ import { FaUniversity } from 'react-icons/fa';
 
 import { Layout, Menu } from 'antd';
 import { useEffect, useState } from 'react';
+import { BiExit, BiUser } from 'react-icons/bi';
+import { GrSettingsOption } from 'react-icons/gr';
+import { useNavigate } from 'react-router-dom';
 import '../../node_modules/antd/dist/reset.css';
 import '../styles/sidebar.css';
 const { Sider } = Layout;
@@ -12,52 +15,43 @@ const { Sider } = Layout;
 const Sidebar = () => {
     const [menuData, setMenuData] = useState([]);
 
-    const testItems = menuData.map(instituto => ({
-        key: 'instituto_' + instituto.id,
-        label: instituto.nombre,
-        title: instituto.nombre,
-        icon: <FaUniversity />,
-        children: instituto.area_academicas ? [
-            {
-                key: 'option_areas_' + instituto.id,
-                label: 'Opciones', type: 'group',
-                children: [
-                    { key: 'config_areas_' + instituto.id, label: 'Gestionar' }
-                ]
-            },
-            {
-                key: 'list_areas_' + instituto,
-                label: 'Areas', type: 'group',
-                children: [
-                    ...instituto.area_academicas.map(areaAcademica => ({
-                        key: 'area_' + areaAcademica.id,
-                        label: areaAcademica.nombre,
-                        children: areaAcademica.Edificios ? [
-                            {
-                                key: 'option_edificios_' + areaAcademica.id,
-                                label: 'Opciones', type: 'group',
-                                children: [
-                                    { key: 'config_edificios_' + areaAcademica.id, label: 'Gestionar' }
-                                ]
-                            },
-                            {
-                                key: 'list_edificios_' + areaAcademica.id,
-                                label: 'Edificios', type: 'group',
-                                children: [
-                                    ...areaAcademica.Edificios.map(edificio => ({
-                                        key: 'edificio_' + edificio.id,
-                                        label: edificio.nombre
-                                    }))
-                                ]
-                            },
+    const navigate = useNavigate();
 
-                        ] : [] // Opción predeterminada para edificios
-                    }))
-                ]
-            }
+    const testItems = [
+        {
+            key: 'Config',
+            label: 'Institutos',
+            title: 'Institutos',
+            icon: <GrSettingsOption />,
+            onClick: () => navigate('/institutos'),
+        },
+        ...menuData.map(instituto => ({
+            key: 'instituto_' + instituto.id,
+            label: instituto.nombre,
+            title: instituto.nombre,
+            icon: <FaUniversity />,
+            children: instituto.area_academicas ? [
 
-        ] : [] // Opción predeterminada para áreas académicas
-    }));
+                ...instituto.area_academicas.map(areaAcademica => ({
+                    key: 'area_' + areaAcademica.id,
+                    label: areaAcademica.nombre,
+                }))
+
+            ] : [] // Opción predeterminada para áreas académicas
+        })),
+        {
+            key: 'Usuario',
+            label: 'Usuario',
+            icon: <BiUser />,
+            onClick: () => navigate('/usuario'),
+        },
+        {
+            key: 'session',
+            label: 'Cerrar Sesión',
+            icon: <BiExit />,
+            onClick: () => navigate('/'),
+        },
+    ]
 
 
     useEffect(() => {
@@ -87,7 +81,7 @@ const Sidebar = () => {
             collapsible
         >
             <div className='logo'>
-                <img src="../public/inventarioLogo.svg" alt="logo" />
+                <img src="/inventarioLogo.svg" alt="logo" />
             </div>
             <Menu
 

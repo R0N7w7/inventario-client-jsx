@@ -7,8 +7,8 @@ const dataSource = [
     nombre: 'icbi',
     apellido_paterno: 'garza',
     apellido_materno: 'garza2',
-    email:'garza@gmail.cum',
-    password:'1234'
+    email: 'garza@gmail.cum',
+    password: '1234'
   },
   // Add more data items as needed
 ];
@@ -71,7 +71,7 @@ const deleteRow = (key) => {
 };
 
 const TabUsuarios = () => {
-  return <Table dataSource={dataSource} columns={columns} />;
+  return <Table dataSource={dataSource} columns={columns} scroll={{ x: true }} />;
 };
 
 export default TabUsuarios;
