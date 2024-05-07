@@ -1,14 +1,7 @@
-import '../node_modules/antd/dist/reset.css'
-import Sidebar from './components/sidebar';
 import { Layout } from 'antd';
-const { Header, Sider, Content } = Layout;
-import Formulario from './components/formIngreso';
-import TabAreasAc from './components/tabAreasAcademicas';
-import TabArticulos from './components/tabArticulos';
-import TabCateg from './components/tabCategorias';
-import TabEspacios from './components/tabEspacios';
-import TabEdificios from './components/tabEdificios';
-import TabUsuarios from './components/tabUsuarios';
+import '../node_modules/antd/dist/reset.css';
+import Sidebar from './components/sidebar';
+const { Header, Content } = Layout;
 const App = () => {
   return (
     <Layout
@@ -33,7 +26,6 @@ const App = () => {
             minHeight: 280,
           }}
         >
-          <TabUsuarios/>
         </Content>
       </Layout>
     </Layout>

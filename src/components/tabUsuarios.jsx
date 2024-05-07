@@ -1,5 +1,4 @@
-import React from 'react';
-import { Table, Button } from 'antd';
+import { Button, Table } from 'antd';
 
 const dataSource = [
   {
