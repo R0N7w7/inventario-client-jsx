@@ -1,4 +1,4 @@
-import { Empty, Flex, FloatButton, notification } from "antd";
+import { Empty, Flex, FloatButton, Modal, notification } from "antd";
 import { useEffect, useState } from "react";
 import { RiAddLargeFill } from "react-icons/ri";
 import { useNavigate, useParams } from "react-router-dom";
@@ -10,6 +10,8 @@ const AreaList = () => {
     const { id_instituto } = useParams();
 
     const [institutosData, setInstitutosData] = useState([]);
+
+    const [formModalOpen, setFormModalOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -29,7 +31,7 @@ const AreaList = () => {
         }
 
         fetchInstitutos();
-    }, [])
+    }, [id_instituto])
 
     return (
         <Flex wrap gap={28} align="center" justify="center">
@@ -51,7 +53,14 @@ const AreaList = () => {
             <FloatButton
                 icon={<RiAddLargeFill />}
                 tooltip='Agregar Instituto'
+                onClick={() => setFormModalOpen(!formModalOpen)}
             />
+
+            <Modal
+                open={formModalOpen}
+                onCancel={() => setFormModalOpen(false)}
+                
+            ></Modal>
         </Flex>
     )
 }

@@ -3,7 +3,10 @@ import Meta from 'antd/es/card/Meta'
 import { CiEdit, CiTrash } from 'react-icons/ci'
 import { FaUniversity } from 'react-icons/fa'
 
-const DataCard = ({ title, description, onClick, onEdit, onDelete }) => {
+const DataCard = (props) => {
+    // eslint-disable-next-line react/prop-types
+    const { title, description, onClick, onEdit, onDelete } = props;
+    
     return (
         <Card
             hoverable

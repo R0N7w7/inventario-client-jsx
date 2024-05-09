@@ -1,5 +1,5 @@
+import { Button, Table } from 'antd';
 import React from 'react';
-import { Table, Button } from 'antd';
 
 const dataSource = [
   {
