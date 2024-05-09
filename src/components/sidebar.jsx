@@ -19,11 +19,10 @@ const Sidebar = () => {
 
     const testItems = [
         {
-            key: 'Config',
+            key: '/institutos',
             label: 'Institutos',
             title: 'Institutos',
             icon: <GrSettingsOption />,
-            onClick: () => navigate('/institutos'),
         },
         ...menuData.map(instituto => ({
             key: 'instituto_' + instituto.id,
@@ -33,23 +32,21 @@ const Sidebar = () => {
             children: instituto.area_academicas ? [
 
                 ...instituto.area_academicas.map(areaAcademica => ({
-                    key: 'area_' + areaAcademica.id,
+                    key: '/areas_academicas/' + areaAcademica.id,
                     label: areaAcademica.nombre,
                 }))
 
             ] : [] // Opción predeterminada para áreas académicas
         })),
         {
-            key: 'Usuario',
+            key: '/Usuario',
             label: 'Usuario',
             icon: <BiUser />,
-            onClick: () => navigate('/usuario'),
         },
         {
-            key: 'session',
+            key: '/logout',
             label: 'Cerrar Sesión',
-            icon: <BiExit />,
-            onClick: () => navigate('/'),
+            icon: <BiExit />
         },
     ]
 
@@ -88,7 +85,7 @@ const Sidebar = () => {
                 style={{
                     fontWeight: '600',
                 }}
-                onClick={(info) => console.log(info)}
+                onClick={(info) => navigate(info.key)}
                 mode="inline"
                 items={testItems}
             />
