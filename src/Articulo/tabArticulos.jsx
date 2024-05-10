@@ -1,10 +1,6 @@
-import { Button, Table } from 'antd';
+import { Button, Flex, Table } from 'antd';
+import { BiEdit, BiTrash } from 'react-icons/bi';
 const columns = [
-  {
-    title: 'ID',
-    dataIndex: 'id',
-    key: 'id',
-  },
   {
     title: 'Nombre',
     dataIndex: 'nombre',
@@ -36,29 +32,9 @@ const columns = [
     key: 'estado',
   },
   {
-    title: 'Categoría ID',
-    dataIndex: 'categoria_id',
-    key: 'categoria_id',
-  },
-  {
-    title: 'Espacio ID',
-    dataIndex: 'espacio_id',
-    key: 'espacio_id',
-  },
-  {
-    title: 'Fecha Adquisición',
-    dataIndex: 'fecha_adquisicion',
-    key: 'fecha_adquisicion',
-  },
-  {
-    title: 'Fecha Baja',
-    dataIndex: 'fecha_baja',
-    key: 'fecha_baja',
-  },
-  {
-    title: 'Número de Serie',
-    dataIndex: 'numero_serie',
-    key: 'numero_serie',
+    title: 'Categoria',
+    dataIndex: 'categoria',
+    key: 'categoria',
   },
   {
     title: 'Posición',
@@ -74,17 +50,31 @@ const columns = [
     title: 'Acciones',
     key: 'actions',
     render: (text, record) => (
-      <>
-        <Button type="primary" onClick={() => editRow(record)}>
+      <Flex gap={8} vertical>
+        <Button type="primary" onClick={() => editRow(record)} icon={<BiEdit />}>
           Edit
         </Button>
-        <Button danger onClick={() => deleteRow(record.key)}>
+        <Button danger onClick={() => deleteRow(record.key)} icon={<BiTrash />}>
           Delete
         </Button>
-      </>
+      </Flex>
     ),
   }
 ];
+
+const dataFake = {
+  key: '1',
+  nombre: 'Producto 1',
+  descripcion: 'Descripción del producto 1',
+  codigo: 'ABC123',
+  cantidad: 10,
+  precio: 50.99,
+  estado: 'Disponible',
+  categoria: 'Electrónica',
+  posicion: 'A1',
+  caracteristicas: 'Alta calidad',
+}
+
 
 const editRow = (record) => {
   // Add your edit functionality here
@@ -96,8 +86,13 @@ const deleteRow = (id) => {
   console.log('Delete row with id:', id);
 };
 
+const hola = [];
+for (let i = 0; i < 250; i++) {
+  hola.push(dataFake);
+}
+
 const TabArticulos = () => {
-  return <Table columns={columns} scroll={{ x: true }} />;
+  return <Table columns={columns} scroll={{ x: true }} dataSource={hola} />;
 };
 
 export default TabArticulos;
