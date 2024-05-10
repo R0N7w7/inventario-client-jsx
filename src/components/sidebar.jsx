@@ -32,7 +32,7 @@ const Sidebar = () => {
             children: instituto.area_academicas ? [
 
                 ...instituto.area_academicas.map(areaAcademica => ({
-                    key: '/areas_academicas/' + areaAcademica.id,
+                    key: '/edificios/' + areaAcademica.id,
                     label: areaAcademica.nombre,
                 }))
 

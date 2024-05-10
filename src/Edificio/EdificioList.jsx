@@ -5,9 +5,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import DataCard from "../components/DataCard";
 
 
-const AreaList = () => {
+const EdificioList = () => {
 
-    const { id_instituto } = useParams();
+    const { id_area } = useParams();
 
     const [Data, setData] = useState([]);
 
@@ -16,9 +16,9 @@ const AreaList = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const fetchAreas = async () => {
+        const fetchEdificios = async () => {
             try {
-                const response = await fetch('http://localhost:3000/API/areas_academicas/instituto/' + id_instituto);
+                const response = await fetch('http://localhost:3000/API/edificios/area_academica/' + id_area);
                 if (!response.ok) {
                     throw new Error('No se pudo obtener los datos');
                 }
@@ -30,39 +30,39 @@ const AreaList = () => {
             }
         }
 
-        fetchAreas();
-    }, [id_instituto])
+        fetchEdificios();
+    }, [id_area])
 
     return (
         <Flex wrap gap={28} align="center" justify="center">
             {
                 Data.length
-                    ? Data.map(area => (
+                    ? Data.map(edificio => (
                         <DataCard
-                            key={area.id}
-                            title={area.nombre}
-                            description={area.codigo}
-                            onClick={() => navigate(`/edificios/${area.id}`)}
-                            onDelete={() => notification.success({ message: 'Eliminando...', description: `Eliminando el area: ${area.nombre}` })}
-                            onEdit={() => notification.success({ message: 'Editando...', description: `Editando el area: ${area.nombre}` })}
+                            key={edificio.id}
+                            title={edificio.nombre}
+                            description={edificio.codigo}
+                            onClick={() => navigate(`/espacios/${edificio.id}`)}
+                            onDelete={() => notification.success({ message: 'Eliminando...', description: `Eliminando el edificio: ${edificio.nombre}` })}
+                            onEdit={() => notification.success({ message: 'Editando...', description: `Editando el edificio: ${edificio.nombre}` })}
                         />
                     ))
-                    : <Empty description='No hay areas academicas registradas' >
+                    : <Empty description='No hay edificios registrados' >
                     </Empty>
             }
             <FloatButton
                 icon={<RiAddLargeFill />}
-                tooltip='Agregar area academica'
+                tooltip='Agregar edificio'
                 onClick={() => setFormModalOpen(!formModalOpen)}
             />
 
             <Modal
                 open={formModalOpen}
                 onCancel={() => setFormModalOpen(false)}
-                
+
             ></Modal>
         </Flex>
     )
 }
 
-export default AreaList
+export default EdificioList
