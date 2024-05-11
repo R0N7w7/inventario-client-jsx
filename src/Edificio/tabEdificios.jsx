@@ -1,12 +1,13 @@
+import { Button, Table } from 'antd';
 import React from 'react';
-import { Table, Button } from 'antd';
 
 const dataSource = [
   {
     key: '1',
     id: 1,
-    nombre: 'John Doe',
-    descripcion: '123'
+    nombre: 'Ciencias cum',
+    numero_pisos: 2,
+    area_academica_id: 1234,
   },
   // Add more data items as needed
 ];
@@ -23,9 +24,14 @@ const columns = [
     key: 'nombre',
   },
   {
-    title: 'Descripción',
-    dataIndex: 'descripcion',
-    key: 'descripcion',
+    title: '#Pisos',
+    dataIndex: 'numero_pisos',
+    key: 'numero_pisos',
+  },
+  {
+    title: 'Área Académica',
+    dataIndex: 'area_academica_id',
+    key: 'area_academica_id',
   },
   {
     title: 'Acciones',
@@ -53,8 +59,8 @@ const deleteRow = (key) => {
   console.log('Delete row with key:', key);
 };
 
-const TabCateg = () => {
+const TabEdificios = () => {
   return <Table dataSource={dataSource} columns={columns} />;
 };
 
-export default TabCateg;
+export default TabEdificios;

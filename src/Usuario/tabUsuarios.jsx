@@ -1,12 +1,14 @@
-import React from 'react';
-import { Table, Button } from 'antd';
+import { Button, Table } from 'antd';
 
 const dataSource = [
   {
     key: '1',
     id: 1,
     nombre: 'icbi',
-    codigo: 2,
+    apellido_paterno: 'garza',
+    apellido_materno: 'garza2',
+    email: 'garza@gmail.cum',
+    password: '1234'
   },
   // Add more data items as needed
 ];
@@ -23,9 +25,24 @@ const columns = [
     key: 'nombre',
   },
   {
-    title: 'Código',
-    dataIndex: 'codigo',
-    key: 'codigo',
+    title: 'Ap. Paterno',
+    dataIndex: 'apellido_paterno',
+    key: 'apellido_paterno',
+  },
+  {
+    title: 'Ap. Materno',
+    dataIndex: 'apellido_materno',
+    key: 'apellido_materno',
+  },
+  {
+    title: 'e-mail',
+    dataIndex: 'email',
+    key: 'email',
+  },
+  {
+    title: 'Contraseña',
+    dataIndex: 'password',
+    key: 'password'
   },
   {
     title: 'Acciones',
@@ -53,8 +70,8 @@ const deleteRow = (key) => {
   console.log('Delete row with key:', key);
 };
 
-const TabEdificios = () => {
-  return <Table dataSource={dataSource} columns={columns} />;
+const TabUsuarios = () => {
+  return <Table dataSource={dataSource} columns={columns} scroll={{ x: true }} />;
 };
 
-export default TabEdificios;
+export default TabUsuarios;
