@@ -12,23 +12,40 @@
     max-width: 1200px;
     display: grid;
     grid-template-columns: 1fr 4fr;
-    gap: 4em;
+    grid-template-rows: 1fr 30px;
+    gap: 2em;
     margin: auto;
 }
 
-label,
-legend {
-    display: block;
-    user-select: none;
+.contenedor1,
+.contenedor2 {
+    /* background: rgb(255, 255, 255); */
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: repeat(6, 100px);
+    row-gap: 1.2em;
 }
 
-label {
-    font-size: 2vh;
-    margin-bottom: .5vh;
+.contenedor1 {
+    min-width: 250px;
+}
+
+fieldset {
+    background: rgba(200, 200, 200, 0.143);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.fs-ubicacion,
+.fs-categoria,
+.fs-precio {
+    grid-row: span 2;
 }
 
 /* Distribución columnas del fieldset información general */
 .fs-inf-gral {
+    grid-row: span 3;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1em;
@@ -36,6 +53,7 @@ label {
 
 /* Distribución columnas del fieldset información opcional */
 .fs-opcional {
+    grid-row: span 3;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 1em;
@@ -63,38 +81,24 @@ label {
     grid-column: span 3;
 }
 
-/* Cursor de mano para los radiobtn de estado */
-.fs-inf-gral .estado .lbl-inline,
-.fs-inf-gral .estado input {
-    cursor: pointer;
-    display: inline;
-    font-size: 1.6vh;
+label,
+legend {
+    display: block;
+    user-select: none;
+    margin: 0;
 }
 
-select {
-    cursor: pointer;
+label {
+    font-size: 1.8vh;
+    /* margin-bottom: .5vh; */
 }
 
-.contenedor1, .contenedor2{
-    margin-top: 4vh;
-    background: rgb(245, 245, 245);
-    padding: 20px;
-    border-radius: 10px;
-    
-}
-.contenedor1 select:invalid:focus{
-    background: rgb(245, 228, 228);
-}
-.contenedor1 select:valid{
-    background: rgb(228, 245, 230);
-}
-
-input,
-select {
+input {
     border: none;
     background: rgb(232, 232, 232);
     border-radius: 10px;
     min-width: 100%;
+    max-width: 100%;
     height: 4.5vh;
     font-size: 1.8vh;
     padding: 12px;
@@ -102,17 +106,7 @@ select {
     outline: none;
 }
 
-.fs-inf-gral .estado input {
-    height: 20px;
-    min-width: 50px;
-}
 
-fieldset {
-    margin-top: 4vh;
-    background: rgba(200, 200, 200, 0.143);
-    padding: 40px;
-    border-radius: 10px;
-}
 
 legend {
     font-weight: 600;
@@ -134,6 +128,7 @@ legend {
     transition: all .5s ease;
 }
 
+/* Etiquetas de campos de entrada y entrada opcionales */
 .entrada label,
 .entrada-opc label {
     position: absolute;
@@ -166,7 +161,8 @@ legend {
     padding: 0 2px;
     color: rgb(158, 43, 60);
 }
-.entrada-opc input:not(:placeholder-shown) + label{
+
+.entrada-opc input:not(:placeholder-shown)+label {
     top: 0;
     left: 10px;
 }
@@ -184,5 +180,56 @@ legend {
     transition: all .5s ease;
 }
 
+.select {
+    background: rgb(232, 232, 232);
+    border-radius: 10px;
+    min-width: 100%;
+    height: 4.5vh;
+    font-size: 1.8vh;
+}
+
+
+/* Radio buttons */
+.fs-inf-gral .estado {
+    display: flex;
+}
+
+.fs-inf-gral .estado .titulo-estado {
+    position: absolute;
+    transform: translateY(-50%);
+}
+
+.fs-inf-gral .estado .radiobtn {
+    display: flex;
+    align-items: center;
+}
+
+.fs-inf-gral .estado .radiobtn input {
+    height: 1.7vh;
+    min-width: 30px;
+    cursor: pointer;
+}
+
+.fs-inf-gral .estado .radiobtn label {
+    display: inline;
+    font-size: 1.7vh;
+    cursor: pointer;
+}
+.end{
+    grid-column: 2;
+    justify-self: end;
+    padding: 20px;
+}
+.btnSubmit {
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.3px;
+    font-size: 15px;
+    transition: all 0.5s ease;
+    width: auto;
+}
 /* TODO fondo a containers y padding a fieldset, validar select, personalizar textarea 
    TODO personalizar radiobtns, asignar bien filas en grid, tamaños de fuente, añadir Iconos  */
