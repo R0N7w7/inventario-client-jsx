@@ -1,5 +1,6 @@
 import { Empty, Flex, FloatButton, Modal, notification } from "antd";
 import { useEffect, useState } from "react";
+import { CiBoxList } from "react-icons/ci";
 import { RiAddLargeFill } from "react-icons/ri";
 import { useNavigate, useParams } from "react-router-dom";
 import DataCard from "../components/DataCard";
@@ -45,6 +46,7 @@ const EspacioList = () => {
                             onClick={() => navigate(`/articulos/${espacio.id}`)}
                             onDelete={() => notification.success({ message: 'Eliminando...', description: `Eliminando el espacio: ${espacio.nombre}` })}
                             onEdit={() => notification.success({ message: 'Editando...', description: `Editando el espacio: ${espacio.nombre}` })}
+                            icon={<CiBoxList size={45} />}
                         />
                     ))
                     : <Empty description='No hay espacios registrados' >

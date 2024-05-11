@@ -3,7 +3,7 @@ import { FaUniversity } from 'react-icons/fa';
 
 import { Layout, Menu } from 'antd';
 import { useEffect, useState } from 'react';
-import { BiExit, BiUser } from 'react-icons/bi';
+import { BiCategory, BiExit, BiUser } from 'react-icons/bi';
 import { GrSettingsOption } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
 import '../../node_modules/antd/dist/reset.css';
@@ -12,7 +12,7 @@ const { Sider } = Layout;
 
 
 
-const Sidebar = () => {
+const SideMenu = () => {
     const [menuData, setMenuData] = useState([]);
 
     const navigate = useNavigate();
@@ -38,6 +38,11 @@ const Sidebar = () => {
 
             ] : [] // Opción predeterminada para áreas académicas
         })),
+        {
+            key: '/Categorias',
+            label: 'Categorías',
+            icon: <BiCategory />,
+        },
         {
             key: '/Usuario',
             label: 'Usuario',
@@ -92,4 +97,4 @@ const Sidebar = () => {
         </Sider>
     );
 };
-export default Sidebar;
+export default SideMenu;
