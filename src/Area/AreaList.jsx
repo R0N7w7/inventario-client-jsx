@@ -1,5 +1,6 @@
 import { Empty, Flex, FloatButton, Modal, notification } from "antd";
 import { useEffect, useState } from "react";
+import { HiOutlineAcademicCap } from "react-icons/hi2";
 import { RiAddLargeFill } from "react-icons/ri";
 import { useNavigate, useParams } from "react-router-dom";
 import DataCard from "../components/DataCard";
@@ -45,6 +46,7 @@ const AreaList = () => {
                             onClick={() => navigate(`/edificios/${area.id}`)}
                             onDelete={() => notification.success({ message: 'Eliminando...', description: `Eliminando el area: ${area.nombre}` })}
                             onEdit={() => notification.success({ message: 'Editando...', description: `Editando el area: ${area.nombre}` })}
+                            icon={<HiOutlineAcademicCap size={45} />}
                         />
                     ))
                     : <Empty description='No hay areas academicas registradas' >
@@ -59,7 +61,7 @@ const AreaList = () => {
             <Modal
                 open={formModalOpen}
                 onCancel={() => setFormModalOpen(false)}
-                
+
             ></Modal>
         </Flex>
     )

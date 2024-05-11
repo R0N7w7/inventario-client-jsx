@@ -1,5 +1,6 @@
 import { Empty, Flex, FloatButton, notification } from "antd";
 import { useEffect, useState } from "react";
+import { FaUniversity } from "react-icons/fa";
 import { RiAddLargeFill } from "react-icons/ri";
 import { useNavigate } from "react-router-dom";
 import DataCard from "../components/DataCard";
@@ -41,6 +42,7 @@ const InstitutosList = () => {
               onClick={() => navigate(`/areas_academicas/${instituto.id}`)}
               onDelete={() => notification.success({ message: 'Eliminando...', description: `Eliminando el intituto: ${instituto.nombre}` })}
               onEdit={() => notification.success({ message: 'Editando...', description: `Editando el intituto: ${instituto.nombre}` })}
+              icon = {<FaUniversity size={45}/>}
             />
           ))
           : <Empty description='No hay institutos registrados' >

@@ -1,5 +1,6 @@
 import { Empty, Flex, FloatButton, Modal, notification } from "antd";
 import { useEffect, useState } from "react";
+import { HiBuildingOffice2 } from "react-icons/hi2";
 import { RiAddLargeFill } from "react-icons/ri";
 import { useNavigate, useParams } from "react-router-dom";
 import DataCard from "../components/DataCard";
@@ -45,6 +46,7 @@ const EdificioList = () => {
                             onClick={() => navigate(`/espacios/${edificio.id}`)}
                             onDelete={() => notification.success({ message: 'Eliminando...', description: `Eliminando el edificio: ${edificio.nombre}` })}
                             onEdit={() => notification.success({ message: 'Editando...', description: `Editando el edificio: ${edificio.nombre}` })}
+                            icon={<HiBuildingOffice2 size={45} />}
                         />
                     ))
                     : <Empty description='No hay edificios registrados' >

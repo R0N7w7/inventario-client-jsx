@@ -1,11 +1,10 @@
 import { Button, Card } from 'antd'
 import Meta from 'antd/es/card/Meta'
 import { CiEdit, CiTrash } from 'react-icons/ci'
-import { FaUniversity } from 'react-icons/fa'
 
 const DataCard = (props) => {
     // eslint-disable-next-line react/prop-types
-    const { title, description, onClick, onEdit, onDelete } = props;
+    const { title, description, onClick, onEdit, onDelete, icon } = props;
     
     return (
         <Card
@@ -41,7 +40,7 @@ const DataCard = (props) => {
             onClick={onClick}
         >
             <Meta
-                avatar={<FaUniversity size={60} />}
+                avatar={icon}
                 title={title}
                 description={description}
             />
