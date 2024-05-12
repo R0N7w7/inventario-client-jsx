@@ -1,5 +1,17 @@
 import { Button, Flex, Table } from 'antd';
+import { useEffect, useState } from 'react';
 import { BiEdit, BiTrash } from 'react-icons/bi';
+const columnsCaracteristicas = [
+  {
+    title: 'Propiedad',
+    dataIndex: 'key',
+  },
+  {
+    title: 'Valor',
+    dataIndex: 'value',
+  },
+];
+
 const columns = [
   {
     title: 'Nombre',
@@ -32,9 +44,14 @@ const columns = [
     key: 'estado',
   },
   {
-    title: 'Categoria',
-    dataIndex: 'categoria',
+    title: 'Categoría',
+    dataIndex: 'categoria', // Se mantiene el dataIndex original
     key: 'categoria',
+    render: (text, record) => {
+      // Accedemos al atributo "nombre" dentro del objeto "categoria"
+      const categoriaNombre = record.categoria.nombre;
+      return categoriaNombre;
+    },
   },
   {
     title: 'Posición',
@@ -45,6 +62,11 @@ const columns = [
     title: 'Características',
     dataIndex: 'caracteristicas',
     key: 'caracteristicas',
+    render: (text, record) => {
+      const caracteristicas = record.caracteristicas;
+      const caracteristicasString = Object.entries(caracteristicas).map(([key, value]) => <><p key={key}>{key}: {value}<br /></p></>);
+      return <div>{caracteristicasString}</div>;
+    },
   },
   {
     title: 'Acciones',
@@ -62,18 +84,6 @@ const columns = [
   }
 ];
 
-const dataFake = {
-  key: '1',
-  nombre: 'Producto 1',
-  descripcion: 'Descripción del producto 1',
-  codigo: 'ABC123',
-  cantidad: 10,
-  precio: 50.99,
-  estado: 'Disponible',
-  categoria: 'Electrónica',
-  posicion: 'A1',
-  caracteristicas: 'Alta calidad',
-}
 
 
 const editRow = (record) => {
@@ -86,13 +96,31 @@ const deleteRow = (id) => {
   console.log('Delete row with id:', id);
 };
 
-const hola = [];
-for (let i = 0; i < 250; i++) {
-  hola.push(dataFake);
-}
+
 
 const TabArticulos = () => {
-  return <Table columns={columns} scroll={{ x: true }} dataSource={hola} />;
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchArticulos = async () => {
+      try {
+        const response = await fetch('http://localhost:3000/API/articulos');
+        if (!response.ok) {
+          throw new Error('No se pudo obtener los datos');
+        }
+
+        const data = await response.json();
+        console.log(data);
+        setData(data);
+      } catch (error) {
+        console.error('Error al obtener los datos:', error);
+      }
+    }
+
+    fetchArticulos();
+  }, []);
+
+  return <Table columns={columns} scroll={{ x: true }} dataSource={data} />;
 };
 
 export default TabArticulos;
