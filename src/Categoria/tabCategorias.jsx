@@ -1,8 +1,7 @@
 import { Button, Flex, Table } from 'antd';
+import { useEffect, useState } from 'react';
 import { BiEdit, BiTrash } from 'react-icons/bi';
 import '../styles/tabCategoria.css';
-import { useEffect, useState } from 'react';
-
 
 const columns = [
   {
@@ -24,11 +23,11 @@ const columns = [
     title: 'Acciones',
     key: 'actions',
     render: (text, record) => (
-      <Flex gap={8} >
+      <Flex gap={8} key={record.id}>
         <Button type="primary" onClick={() => editRow(record)} icon={<BiEdit />} block>
           Edit
         </Button>
-        <Button danger onClick={() => deleteRow(record.key)} icon={<BiTrash />} block>
+        <Button danger onClick={() => deleteRow(record.id)} icon={<BiTrash />} block>
           Delete
         </Button>
       </Flex>
@@ -48,9 +47,11 @@ const deleteRow = (key) => {
 
 const TabCateg = () => {
   const [data, setData] = useState([]);
+  const [isloading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchCategorias = async () => {
+      setIsLoading(true);
       try {
         const response = await fetch('http://localhost:3000/API/categorias');
         if (!response.ok) {
@@ -61,6 +62,8 @@ const TabCateg = () => {
         setData(data);
       } catch (error) {
         console.error('Error al obtener los datos:', error);
+      } finally {
+        setIsLoading(false);
       }
     }
 
@@ -68,8 +71,8 @@ const TabCateg = () => {
   }, []);
 
   return <Table
-    dataSource={data} scroll={{ x: true }} columns={columns} tableLayout='auto'
-    className='tabla-categoria'
+    dataSource={data} scroll={{ x: true }} columns={columns}
+    tableLayout='auto' className='tabla-categoria' loading={isloading}
   />;
 };
 

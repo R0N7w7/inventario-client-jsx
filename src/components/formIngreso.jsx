@@ -1,8 +1,8 @@
+import { Input, Modal, Select } from 'antd';
 import React, { useState } from 'react';
-import { Select, Input, Button, Modal } from 'antd';
+import '../styles/formIngreso.css';
 const { TextArea } = Input;
-import '../styles/formIngreso.css'
-const Formulario = () => {
+const ArticuloFrm = () => {
   const [isOpenModal, setOpen] = useState(true);
   const [camposInvalidos, setCamposInvalidos] = useState({});
   const handleSubmit = () => {
@@ -22,18 +22,8 @@ const Formulario = () => {
   }
   return (
     <Modal
-      title="Alta de artículos"
-      centered
       open={isOpenModal}
-      footer={[
-        <Button key="back" onClick={() => setOpen(false)}>
-          Regresar
-        </Button>,
-        <Button key="submit" onClick={handleSubmit} type="primary">
-          Agregar
-        </Button>
-      ]}
-      onCancel={() => setOpen(false)}
+      centered
       width={1100}
     >
       <form id='form_registro' onSubmit={handleSubmit}>
@@ -199,4 +189,4 @@ const Formulario = () => {
   );
 }
 
-export default Formulario;
+export default ArticuloFrm;

@@ -1,16 +1,9 @@
-import { Button, Flex, Table } from 'antd';
+import { Button, Flex, FloatButton, Table } from 'antd';
 import { useEffect, useState } from 'react';
 import { BiEdit, BiTrash } from 'react-icons/bi';
-const columnsCaracteristicas = [
-  {
-    title: 'Propiedad',
-    dataIndex: 'key',
-  },
-  {
-    title: 'Valor',
-    dataIndex: 'value',
-  },
-];
+import { RiAddLargeFill } from 'react-icons/ri';
+import { useParams } from 'react-router-dom';
+import FormArticulo from './FormArticulo';
 
 const columns = [
   {
@@ -84,8 +77,6 @@ const columns = [
   }
 ];
 
-
-
 const editRow = (record) => {
   // Add your edit functionality here
   console.log('Edit row:', record);
@@ -100,11 +91,16 @@ const deleteRow = (id) => {
 
 const TabArticulos = () => {
   const [data, setData] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { id_espacio } = useParams();
 
   useEffect(() => {
     const fetchArticulos = async () => {
       try {
-        const response = await fetch('http://localhost:3000/API/articulos');
+        setIsLoading(true);
+        const response = await fetch('http://localhost:3000/API/articulos/espacio/' + id_espacio);
         if (!response.ok) {
           throw new Error('No se pudo obtener los datos');
         }
@@ -114,13 +110,27 @@ const TabArticulos = () => {
         setData(data);
       } catch (error) {
         console.error('Error al obtener los datos:', error);
+      } finally {
+        setIsLoading(false);
       }
     }
 
     fetchArticulos();
-  }, []);
+  }, [id_espacio]);
 
-  return <Table columns={columns} scroll={{ x: true }} dataSource={data} />;
+  return (
+    <Flex wrap gap={28} align="center" justify="center" >
+      <Table columns={columns} scroll={{ x: true }} dataSource={data} loading={isLoading} />
+      <FloatButton
+        icon={<RiAddLargeFill />}
+        tooltip='Agregar articulo'
+        onClick={() => setIsModalOpen(!isModalOpen)}
+      />
+
+      <FormArticulo isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+    </Flex>
+  )
+
 };
 
 export default TabArticulos;

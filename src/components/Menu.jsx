@@ -7,6 +7,8 @@ import { BiCategory, BiExit, BiUser } from 'react-icons/bi';
 import { GrSettingsOption } from 'react-icons/gr';
 import { useNavigate } from 'react-router-dom';
 import '../../node_modules/antd/dist/reset.css';
+import { getInstitutoDetail } from '../API/instituto';
+import { useMenu } from '../context/Menu';
 import '../styles/sidebar.css';
 const { Sider } = Layout;
 
@@ -14,6 +16,8 @@ const { Sider } = Layout;
 
 const SideMenu = () => {
     const [menuData, setMenuData] = useState([]);
+
+    const { isMenuLoading, setIsMenuLoading } = useMenu();
 
     const navigate = useNavigate();
 
@@ -59,20 +63,18 @@ const SideMenu = () => {
     useEffect(() => {
         const fetchMenu = async () => {
             try {
-                const response = await fetch('http://localhost:3000/API/institutos/detail/');
-                if (!response.ok) {
-                    throw new Error('No se pudo obtener los datos');
-                }
-
-                const data = await response.json();
+                const data = await getInstitutoDetail();
                 setMenuData(data);
             } catch (error) {
                 console.error('Error al obtener los datos:', error);
+            } finally {
+                setIsMenuLoading(false);
             }
         }
-
-        fetchMenu();
-    }, [])
+        if (isMenuLoading) {
+            fetchMenu();
+        }
+    }, [isMenuLoading])
 
 
     return (

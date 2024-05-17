@@ -1,11 +1,11 @@
-import { Button, Card } from 'antd'
-import Meta from 'antd/es/card/Meta'
-import { CiEdit, CiTrash } from 'react-icons/ci'
+import { Button, Card } from 'antd';
+import Meta from 'antd/es/card/Meta';
+import { CiEdit, CiTrash } from 'react-icons/ci';
 
 const DataCard = (props) => {
     // eslint-disable-next-line react/prop-types
     const { title, description, onClick, onEdit, onDelete, icon } = props;
-    
+
     return (
         <Card
             hoverable
