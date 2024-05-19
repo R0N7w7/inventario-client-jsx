@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+#form_registro {
+    width: 100%;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: 1fr 30px;
+    gap: 2em;
+    margin: auto;
+}
+
+.contenedor1,
+.contenedor2 {
+    /* background: rgb(255, 255, 255); */
+    padding: 20px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-rows: repeat(6, 100px);
+    row-gap: 1.2em;
+}
+
+.contenedor1 {
+    min-width: 250px;
+}
+
+fieldset {
+    background: rgba(200, 200, 200, 0.143);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.fs-ubicacion,
+.fs-categoria,
+.fs-precio {
+    grid-row: span 2;
+}
+
+/* Distribución columnas del fieldset información general */
+.fs-inf-gral {
+    grid-row: span 3;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1em;
+}
+
+/* Distribución columnas del fieldset información opcional */
+.fs-opcional {
+    grid-row: span 3;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1em;
+}
+
+/* Elementos que deben abarcar dos columnas (leyenda y textarea) */
+.fs-inf-gral .leyenda,
+.fs-inf-gral .txt-area {
+    grid-column: span 2;
+}
+
+.fs-inf-gral .txt-area textarea {
+    min-width: 100%;
+}
+
+/* Elementos de información opcional */
+.fs-opcional .item1,
+.fs-opcional .item2,
+.fs-opcional .item3 {
+    grid-column: span 2;
+}
+
+.fs-opcional .item4,
+.fs-opcional .item5 {
+    grid-column: span 3;
+}
+
+label,
+legend {
+    display: block;
+    user-select: none;
+    margin: 0;
+}
+
+label {
+    font-size: 1.8vh;
+    /* margin-bottom: .5vh; */
+}
+
+input {
+    border: none;
+    background: rgb(232, 232, 232);
+    border-radius: 10px;
+    min-width: 100%;
+    max-width: 100%;
+    height: 4.5vh;
+    font-size: 1.8vh;
+    padding: 12px;
+    transition: all .5s ease;
+    outline: none;
+}
+
+
+
+legend {
+    font-weight: 600;
+}
+
+/* Campos de entrada */
+.entrada,
+.entrada-opc {
+    position: relative;
+}
+
+.entrada input:valid {
+    background: rgb(228, 245, 230);
+    transition: all .5s ease;
+}
+
+.entrada input:focus:invalid {
+    background: rgb(245, 228, 228);
+    transition: all .5s ease;
+}
+
+/* Etiquetas de campos de entrada y entrada opcionales */
+.entrada label,
+.entrada-opc label {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: rgb(85, 85, 85);
+    font-size: 1.8vh;
+    pointer-events: none;
+    transition: all .3s ease;
+}
+
+.entrada input:focus~label,
+.entrada-opc input:focus~label {
+    top: 0;
+    left: 10px;
+    font-size: 1.7vh;
+}
+
+.entrada input:valid~label {
+    top: 0;
+    left: 10px;
+    padding: 0 2px;
+    color: rgb(99, 158, 43);
+}
+
+.entrada input:invalid:focus~label {
+    top: 0;
+    left: 10px;
+    padding: 0 2px;
+    color: rgb(158, 43, 60);
+}
+
+.entrada-opc input:not(:placeholder-shown)+label {
+    top: 0;
+    left: 10px;
+}
+
+/* Las clases para invalido con onblur */
+.entrada input.invalido~label {
+    top: 0;
+    left: 10px;
+    padding: 0 2px;
+    color: rgb(158, 43, 60);
+}
+
+.entrada input.invalido {
+    background: rgb(245, 228, 228);
+    transition: all .5s ease;
+}
+
+.select {
+    background: rgb(232, 232, 232);
+    border-radius: 10px;
+    min-width: 100%;
+    height: 4.5vh;
+    font-size: 1.8vh;
+}
+
+
+/* Radio buttons */
+.fs-inf-gral .estado {
+    display: flex;
+}
+
+.fs-inf-gral .estado .titulo-estado {
+    position: absolute;
+    transform: translateY(-50%);
+}
+
+.fs-inf-gral .estado .radiobtn {
+    display: flex;
+    align-items: center;
+}
+
+.fs-inf-gral .estado .radiobtn input {
+    height: 1.7vh;
+    min-width: 30px;
+    cursor: pointer;
+}
+
+.fs-inf-gral .estado .radiobtn label {
+    display: inline;
+    font-size: 1.7vh;
+    cursor: pointer;
+}
+.end{
+    grid-column: 2;
+    justify-self: end;
+    padding: 20px;
+}
+.btnSubmit {
+    display: inline-block;
+    text-align: center;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: rgb(0 0 0 / 5%) 0 0 8px;
+    letter-spacing: 1.3px;
+    font-size: 15px;
+    transition: all 0.5s ease;
+    width: auto;
+}
+/* TODO fondo a containers y padding a fieldset, validar select, personalizar textarea 
+   TODO personalizar radiobtns, asignar bien filas en grid, tamaños de fuente, añadir Iconos  */
